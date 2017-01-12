@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NbaPayPerformance</title>
+    <title>Hi David</title>
     <%= csrf_meta_tags %>
+
+    <link rel="shortcut icon" href="/old_tablet.jpg"/>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  	<%= render 'shared/header_nav' %>
     <%= yield %>
   </body>
 </html>

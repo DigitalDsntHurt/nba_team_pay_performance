@@ -6,21 +6,6 @@ class TeamSeasonsController < ApplicationController
   require 'csv'
   def index
     @team_seasons = TeamSeason.all
-    @rows = []
-    @csv = CSV.open(Rails.root.join('app', 'views', 'team_seasons', '2016-17.csv'),"r")
-    @json = {"chartType": "Scatterplot", "attribute1" => "x", "attribute2" => "y", "data" => []}
-
-    @csv.each{|row|
-      @hsh = {}
-      @hsh["x"] = row[6]
-      @hsh["y"] = row[3]
-      @json["data"] << @hsh
-    }
-
-    #@csvv = Rails.root.join('app', 'views', 'team_seasons', '2016-17.csv')
-    #.to_a.each{|row|
-    #  @rows << row
-    #}
   end
 
 

@@ -7,16 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
-CSV.open(Rails.root.join('lib', 'seeds', '2016-17.csv'),"r").to_a.each_with_index{|row,i|
+CSV.open(Rails.root.join('lib', 'data', '2016-17.csv'),"r").to_a.each_with_index{|row,i|
 	next if i == 0
 	TeamSeason.create( 
 		:season => row[0],
 		:team_city => row[1],
     	:team_name => row[2],
-    	:salary => row[3],
-    	:wins => row[4],
-    	:losses => row[5],
-    	:float => row[6]
+        :team_color => row[3],
+    	:salary => row[4],
+    	:wins => row[5],
+    	:losses => row[6],
+    	:win_percentage => row[7]
       )
 }
  

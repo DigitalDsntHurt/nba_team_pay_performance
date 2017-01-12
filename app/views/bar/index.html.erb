@@ -1,0 +1,100 @@
+
+
+<outer>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+  <h2 align="center">from js array (hand coded)</h2>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var data = [50,100,150,175,200,225,275,300]
+
+    var width = "100%"
+    var height = "360"
+
+      var canvas = d3.select("outer").append("svg")
+        .attr("height",height)
+        .attr("width",width)
+        .append("g")
+          .attr("transform","translate(700,50)");
+
+      canvas.selectAll("rect")
+        .data(data)
+        .enter()
+          .append("rect")
+          .attr("width",20)
+          .attr("height",function(data){ return data })
+          .attr("x",function(data,i){ return i*30 })
+          .attr("fill","#005083");
+  </script>
+</outer>
+
+<br><br><hr><br><br>
+
+<outer1>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+  <h2 align="center">from json</h2>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var jsonData = d3.json('/bar/json.json', function(jsonData){
+
+      var canvas = d3.select("outer1").append("svg")
+        .attr("height","500")
+        .attr("width","100%")
+        .append("g")
+          .attr("transform","translate(300,60)");
+
+      canvas.selectAll("rect")
+        .data(jsonData)
+        .enter()
+          .append("rect")
+          .attr("width",30)
+          .attr("height",function(d){ return d.wins * 10 })
+          .attr("x",function(data,i){ return i*40 })
+          .attr("fill",function(d){ return d.team_color });
+
+      });
+
+  </script>
+</outer1>
+
+<br><br><hr><br><br>
+
+<outer2>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+  <h2 align="center">from csv in app/public</h2>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var data = d3.csv('/2016-17_public.csv', function(data){
+
+      var canvas = d3.select("outer2").append("svg")
+        .attr("height","500")
+        .attr("width","100%")
+        .append("g")
+          .attr("transform","translate(300,60)");
+
+      canvas.selectAll("rect")
+        .data(data)
+        .enter()
+          .append("rect")
+          .attr("width",30)
+          .attr("height",function(d){ return d.wins * 10 })
+          .attr("x",function(data,i){ return i*40 })
+          .attr("fill",function(d){ return d.team_color });
+
+      });
+
+  </script>
+</outer2>
+
+<br><br><hr><br><br>
+
+<outer3>
+  <h1 align="center" class="svg_txt_1">Axes</h1>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+
+  </script>
+</outer3>

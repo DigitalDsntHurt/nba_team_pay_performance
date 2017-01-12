@@ -1,0 +1,22 @@
+<h1>Other#tree</h1>
+<p>Find me in app/views/other/tree.html.erb</p>
+
+
+<script>
+	
+	var canvas = d3.select("body").append("svg")
+		.attr("width",500)
+		.attr("height",500)
+		.append("g")
+			.attr("transform","translate(50,50)");
+
+	var tree = d3.layout.tree()
+				.size([400,400]);
+
+	d2.csv('2016-17.csv', function(data){
+		var nodes = tree.nodes(data);
+		var links = tree.links(nodes);
+
+	});
+
+</script>

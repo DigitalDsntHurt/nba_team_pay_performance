@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 20170111012350) do
     t.string   "season"
     t.string   "team_city"
     t.string   "team_name"
+    t.string   "team_color"
     t.integer  "salary"
     t.integer  "wins"
     t.integer  "losses"
-    t.integer  "float"
+    t.float    "win_percentage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
