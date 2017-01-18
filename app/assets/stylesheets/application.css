@@ -19,7 +19,7 @@
 
 
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade');
-
+@import url('https://fonts.googleapis.com/css?family=VT323');
 
 
 
@@ -82,13 +82,125 @@ h2 {
 	font-family: 'Bungee Shade', cursive;	
 }
 
-outer{
-	min-width: 100%;
-	min-height: 100%;
+h4 {
+	font-size: 3em;
+	font-weight: strong;
+	font-family: 'VT323', monospace;
 }
 
 .svg_txt_1{
-	font-size:2em;
+	font-size: 2em;
 	font-weight: strong;
 	font-family: 'Bungee Shade', cursive;
 }
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.chart-container{
+	min-width: 100%;
+	min-height: 350px;
+	max-height: 800px;
+
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 30px;
+	margin-right: 30px;
+
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-left: 20px;
+}
+
+
+
+
+
+.team-circle:hover {
+	opacity: 0.5;
+}
+
+.d3-tip {
+  width: 150px;
+  height: 50px;
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: left;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+/* Creates a small triangle extender for the tooltip */
+
+/*
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

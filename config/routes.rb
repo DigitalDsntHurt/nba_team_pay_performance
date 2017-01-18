@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  get 'home' => 'home#index'
+
+  resources :team_seasons
+
+
   get 'other/index'
   get 'other/' => 'other#index'
   get 'other/bar'
@@ -15,15 +21,12 @@ Rails.application.routes.draw do
   get 'other/barchart' => 'other#barchart'
   get 'other/barchartcsv' => 'other#barchartcsv'
 
-  resources :team_seasons
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get 'scatter/index'
-  get 'scatter' => 'scatter#index'
-  get '/scatterchart' => 'scatter#scatterchart'
-
+  
   get 'bar' => 'bar#index'
   get 'bar/json' => 'bar#json'
-#  get 'bar/csv' => 'bar#csv'
 
+  get 'line' => 'line#index'
+
+  get 'scatter' => 'scatter#index'
+  get '/scatterchart' => 'scatter#scatterchart'
 end

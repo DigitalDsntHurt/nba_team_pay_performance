@@ -1,0 +1,31 @@
+season,team_city,team_name,full_team_name,team_color,salary,wins,losses,win_percentage
+2016-17,Golden State,Warriors,Golden State Warriors,#006BB6,107079254,32,6,0.842
+2016-17,Houston,Rockets,Houston Rockets,#CE1141,94091224,30,9,0.769
+2016-17,San Antonio,Spurs,San Antonio Spurs,#B6BFBF,111353969,30,7,0.811
+2016-17,Cleveland,Cavaliers,Cleveland Cavaliers,#860038,129487297,28,8,0.778
+2016-17,Los Angeles,Clippers,Los Angeles Clippers,#ED174C,114756766,26,14,0.65
+2016-17,Memphis,Grizzlies,Memphis Grizzlies,#23375B,109555650,24,16,0.6
+2016-17,Toronto,Raptors,Toronto Raptors,#CE1141,106413030,24,13,0.649
+2016-17,Boston,Celtics,Boston Celtics,#008348,93465326,23,14,0.622
+2016-17,Oklahoma City,Thunder,Oklahoma City Thunder,#007DC3,86919117,23,16,0.59
+2016-17,Utah,Jazz,Utah Jazz,#002B5C,80138192,23,16,0.59
+2016-17,Atlanta,Hawks,Atlanta Hawks,#E03A3E,100698578,21,16,0.568
+2016-17,Charlotte,Hornets,Charlotte Hornets,#1D1160,99193019,20,18,0.526
+2016-17,Indiana,Pacers,Indiana Pacers,#00275D,86279072,20,18,0.526
+2016-17,Chicago,Bulls,Chicago Bulls,#CE1141,96645147,19,19,0.5
+2016-17,Detroit,Pistons,Detroit Pistons,#006BB6,115060819,18,21,0.462
+2016-17,Milwaukee,Bucks,Milwaukee Bucks,#00471B,102620580,18,18,0.5
+2016-17,Washington,Wizards,Washington Wizards,#002566,104141073,18,18,0.5
+2016-17,New York,Knicks,New York Knicks,#006BB6,103062240,17,21,0.447
+2016-17,Orlando,Magic,Orlando Magic,#007DC5,106231566,16,23,0.41
+2016-17,Portland,Trail Blazers,Portland Trail Blazers,#F0163A,120139444,16,23,0.41
+2016-17,Los Angeles,Lakers,Los Angeles Lakers,#552582,94254746,15,26,0.366
+2016-17,New Orleans,Pelicans,New Orleans Pelicans,#002B5C,101156070,15,24,0.385
+2016-17,Sacramento,Kings,Sacramento Kings,#724C9F,95362741,15,22,0.405
+2016-17,Denver,Nuggets,Denver Nuggets,#4FA8FF,75614323,14,23,0.378
+2016-17,Minnesota,Timberwolves,Minnesota Timberwolves,#005083,83932588,12,26,0.316
+2016-17,Phoenix,Suns,Phoenix Suns,#E56020,85221437,12,26,0.316
+2016-17,Dallas,Mavericks,Dallas Mavericks,#007DC5,109857574,11,27,0.289
+2016-17,Miami,Heat,Miami Heat,#98002E,101372443,11,28,0.282
+2016-17,Philadelphia,76ers,Philadelphia 76ers,#006BB6,76343462,10,25,0.286
+2016-17,Brooklyn,Nets,Brooklyn Nets,#000000,74739625,8,28,0.222

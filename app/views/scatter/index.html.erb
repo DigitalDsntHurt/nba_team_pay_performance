@@ -1,521 +1,319 @@
+<h1 align="center" class="svg_txt_1">Scatter Plots</h1>
 
-<scatterchart>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
+<d>
+	<h4 align="center">thin rectangles where axes should be</h4>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script>
+		var width = 2300;
+		var height = 900;
+		var padding = 100;
+
+		var canvas = d3.select("d")
+			.append("svg")
+			.attr("width",width)
+			.attr("height",height);
+
+		canvas.append("g")
+			.append("rect")
+				.attr("width",width)
+				.attr("height",3)
+				.attr("fill","black")
+				.attr("x",padding)
+				.attr("y",height-10);
+
+		canvas.append("g")
+			.append("rect")
+				.attr("width",3)
+				.attr("height",height)
+				.attr("fill","black")
+				.attr("x",padding)
+				.attr("y",10);				
+	</script>
+</d>
+
+<br>
+	<hr>
+<br>
+
+<div class="chart-container">
+<chart>
+    <h4 align="center"> Just the Axes </h4>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
+  <script>
 
-    d3.json("/barchart.json", function (data) {
+  var data = d3.csv('/2016-17_public.csv', function(data){
 
-      var canvas = d3.select("scatterchart").append("svg")
-        .attr("height",500)
-        .attr("width",900);
-
-      var widthScale = d3.scale.linear()
-                      .domain([0,81])
-                      .range([0,900]);
-
-      var heightScale = d3.scale.linear()
-                      .domain([50000000,170000000])
-                      .range([0,500]);
-
-      var xAxis = d3.svg.axis()
-            .scale(widthScale); 
-
-      var yAxis = d3.svg.axis()
-            .scale(heightScale); 
-
-      canvas.selectAll("circle")  
-        .data(data)
-        .enter()
-          .append("circle")
-          .attr("r",function(d){ return d.wins })
-          .attr("x",function(d){ return d.wins*15 })
-          .attr("y",function(d){ return d.salary/1000000})
-          .attr("fill",function(d){ return d.team_color})
-
-      canvas.selectAll("text")
-        .data(data)
-        .enter()
-          .append("text")
-          .style('fill',"black")
-          .attr("y",135)
-          .attr("x", function (d, i){ return i * 35 })
-          .text( function(d){ return d.team_name })
-
-    })
-
-    </script>
-</scatterchart>
-
-
-<br><br>
-<hr>
-<br><br>
-
-<scatternine>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var data = [10,15,20,25,30];
-    var shifted = data.shift();
-    var sorted = data.sort(d3.descending);
-    var min = d3.min(data);
-    var max = d3.max(data);
-    var extent = d3.extent(data);
-    var summed = d3.sum(data);
-    var meaned = d3.mean(data);
-    var medianed = d3.median(data);
-    var shuffled = d3.shuffle(data);
-
-    var container = d3.select("scatternine")
-                    .append("svg")
-                    .attr("height",350)
-                    .attr("width",600)
+    var width = 1500;
+    var height = 750;
+    var padding = { top: 20, right: 20, bottom: 20, left:20 }
     
-    container.append("text")
-      .attr("class","svg_txt_1")
-      .attr("y",200)
-      .text(shuffled);                
-
-    </script>
-</scatternine>
-
-<scattereight>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var data = [10];
-
-    var canvas = d3.select("scattereight")
-                  .append("svg")
-                  .attr("width",500)
-                  .attr("height",500);
-
-    var circle = canvas.append("circle")
-                  .attr("cx",50)
-                  .attr("cy",50)
-                  .attr("r",25);
-
-    circle.transition()
-      .duration(1500)
-      .delay(2000)
-      .attr("cx",150)
-      .transition()
-        .attr("cy",288)
-
-    </script>
-</scattereight>
-
-
-<scatterseven>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var data = [10,20];
-
-    var canvas = d3.select("scatterseven")
-                  .append("svg")
-                  .attr("width",500)
-                  .attr("height",500);
-
-    var circle1 = canvas.append("circle")
-                  .attr("cx",50)
-                  .attr("cy",100)
-                  .attr("r",25);
-
-    var circle2 = canvas.append("circle")
-                  .attr("cx",50)
-                  .attr("cy",120)
-                  .attr("r",25);
-
-    var circles = canvas.selectAll("circle")
-                  .data(data)
-                  .attr("fill","green")
-                  .exit()
-                    .attr("fill","blue");
-
-    </script>
-</scatterseven>
-
-
-
-
-<scattersix>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var data = [10,20];
-
-    var canvas = d3.select("scattersix")
-                  .append("svg")
-                  .attr("width",500)
-                  .attr("height",500);
-
-    var circle = canvas.append("circle")
-                  .attr("cx",50)
-                  .attr("cy",100)
-                  .attr("r",25);
-
-    var circles = canvas.selectAll("circle")
-                  .data(data)
-                  .attr("fill","red")
-                  .enter()
-                    .append("circle")
-                    .attr("cx",50)
-                    .attr("cy",50)
-                    .attr("r",25);
-
-    </script>
-</scattersix>
-
-
-<scatterfive>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var appData = d3.json( '/graph.json', function( error, data ) {
-        console.log( data );
-    } );
-
-    var data = [5,40,50,60];
-    var width = 900;
-    var height = 350;
-
-    var widthScale = d3.scale.linear()
-                      .domain([0,60])
-                      .range([0,width]);
-
-    var color = d3.scale.linear()
-      .domain([0,60])
-      .range(["pink","red"]);
-
-    var axis = d3.svg.axis()
-                .scale(widthScale);    
-
-    var canvas = d3.select("scatterfive")
+    var canvas = d3.select("chart")
                   .append("svg")
                   .attr("width",width)
-                  .attr("height",height)
-                  .append("g")
-                  .attr("transform","translate(20,0)")
-
-    var bars = canvas.selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                  .attr("width", function(d){ return widthScale(d) })
-                  .attr("height", 22)
-                  .attr("fill", function (d){ return color(d) })
-                  .attr("y", function(d,i){ return i*30 });
-
-    canvas.append("g")
-      .attr("transform","translate(0,400)");
-
-
-    </script>
-</scatterfive>
-
-<br><br>
-<hr>
-<br><br>
-
-<scatterthree>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var data = [20,40,60]
-    var appData = d3.json( '/graph.json', function( error, data ) {
-        console.log( data );
-    } );
-
-    var canvas = d3.select("scatterthree")
-                  .append("svg")
-                  .attr("width",950)
-                  .attr("height",500);
-
-    var bars = canvas.selectAll("rect")
-                .data(data) // loads data from array
-                .enter() // creates placeholder DOM elements for each element in the the data array
-                .append("rect") // build the actual rectangles
-                  .attr("width", function(d){ return d*10 })
-                  .attr("height", 50)
-                  .attr("y", function(d,i){ return i*100 });
-
-    </script>
-</scatterthree>
-
-
-
-<br><br>
-<hr>
-<br><br>
-
-
-
-
-<scatterfour>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var data = [20,40,60]
-    var appData = d3.json( '/graph.json', function( error, data ) {
-        console.log( data );
-    } );
-
-    var canvas = d3.select("scatterfour")
-                  .append("svg")
-                  .attr("width",950)
-                  .attr("height",500);
-
-    var bars = canvas.selectAll("rect")
-                .data(appData) // loads data from array
-                .enter() // creates placeholder DOM elements for each element in the the data array
-                .append("rect") // build the actual rectangles
-                  .attr("width", function(d){ return d.x})
-                  .attr("height", 16)
-                  .attr("y", function(d,i){ return i*40 });
-
-    </script>
-</scatterfour>
-
-<br><br>
-<hr>
-<br><br>
-
-<scatterone>
-  <h4 align="center" class="svg_txt_1">Textbook d3 Pipeline</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-    var outerWidth = 900;
-    var outerHeight = 500;
-    var rMin = 12
-    var rMax = 24
-    var xColumn = "win_percentage";
-    var yColumn = "salary";
-    var rColumn = "losses"
-    var colorColumn = "team_color";
-
-
-    // get data
-    var data = d3.json("graph.json", function(json){
-      data = json.data;
-    });
-
-    // build and append an svg to the scatterone div
-    var svg = d3.select("scatterone").append("svg")
-      .attr("width",outerWidth)
-      .attr("height",outerHeight);
-
-    // build scales
-    var xScale = d3.scale.linear().range([0,outerWidth]);
-    var yScale = d3.scale.linear().range([0,outerHeight]);
-    var rScale = d3.scale.linear().range([rMin,rMax]);
-      
-    function render(data){
-      xScale.domain(d3.extent(data, function(d){return d[xColumn]; }));
-      yScale.domain(d3.extent(data, function(d){return d[yColumn]; }));
-      rScale.domain(d3.extent(data, function(d){return d[rColumn]; }));
-      
-      var circles = svg.selectAll("circle").data(data);
-      circles.enter().append("circle").attr("r",16);
-      circles
-        .attr("cx", function(d){return xScale(d[xColumn]); })
-        .attr("cy", function(d){return yScale(d[yColumn]); })
-        .attr("r",  function(d){return rScale(d[rColumn]); });
-      circles.exit().remove();
-    }
-
-    function type(d){
-      d.win_percentage = +d.win_percentage;
-      d.salary = +d.salary;
-
-
-      return d;
-    }
-      //x.domain([.000,.100])
-      //y.domain([50000000,170000000])
-      
-
-    // get data
-    //var data = d3.json("graph.json", function (json) {
-    //console.log("I read " + json.data.length + " data points.");
-    //data = json.data;
-    //});
-
-
-
-    
-
-
-
-    // build axes
-    var xAxis = d3.svg.axis()
-      .scale(xScale)
-      .orient("bottom")
-      .ticks(5)
-
-    var yAxis = d3.svg.axis()
-      .scale(yScale)
-      .orient("left")
-      .ticks(12)
-
-
-
-
-
-
-
-
-
-      // get or make data
-      var data;
-      d3.json("graph.json", function (json) {
-      console.log("I read " + json.data.length + " data points.");
-      data = json.data;
-      // visualize(data); //then start the visualization
-
-      });
-
-      
-      
-
-      //var scale = 
-      //  .domain([1,6]) // Data space
-      //  .range([0,250]); // Pixel space
-
-
-      // build and append an svg to a specified div
-      var svg = d3.select("scatterone").append("svg")
-        .attr("width",250)
-        .attr("height",250);
-
-        function render(data,color){
-          // Bind data
-          var rects = svg.selectAll("rect").data(data);
-          // Enter
-          rects.enter().append("rect");
-          
-          // Update
-          rects
-            .attr("x",scale)
-            .attr("y",50)
-            .attr("width",18)
-            .attr("height",18)
-            .attr("fill", color);
-        }
-
-        render([1,2,3,4],"red");
-
-      // build and append a rectangle to the svg
-      //var rects = svg.selectAll("rect").data(data);
-      //rects.enter().append("rect")
-      //  .attr("x",scale)
-      //  .attr("y",50)
-      //  .attr("width",33)
-      //  .attr("height",33)
-
-      // build and append a rectangle to the svg
-      //svg.selectAll("rect")
-      //  .data(data)
-      //  .enter().append("rect")
-      //    .attr("x", 50)
-      //    .attr("y",scale)
-      //    .attr("width",20)
-      //    .attr("height",22);
-
-    </script>
-</scatterone>
-
-<br/><br/>
-<hr>
-<br/><br/>
-
-
-<scattertwo>
-  <h4 align="center" class="svg_txt_1">Build scale, select div, append svg, draw square</h4>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script>
-
-      // build a linear scale
-      var scale = d3.scale.linear()
-      .domain([.000,.100]) // Data space
-      .range([0,900]); // Pixel space
-
-      // build and append an svg to <body> of your html page
-      var svg = d3.select("scattertwo").append("svg")
-      .attr("width",950)
-      .attr("height",500);
-
-      // build and append a rectangle to the svg
-      var rect = svg.append("rect")
-      .attr("x",150)
-      .attr("y",150)
-      .attr("height",450)
-      .attr("width",300);
-
-    </script>
-</scattertwo>
-
-<br/><br/>
-<hr>
-<br/><br/>
-
-<div class="scroll-container-basic">
-  
-  <div class="scroll-banner-basic">
-    <h1 class="svg_txt_1">Scatter Plot 1</h1>
-  </div>
-
-  <div class="scroll-banner-basic">
-    <h1 class="svg_txt_1">Scatter Plot 2</h1>
-  </div>
-  
-  <div class="scroll-banner-basic">
-    <h1 class="svg_txt_1">Scatter Plot 3</h1>
-  </div>
-
-  <div class="scroll-banner-basic">
-    <h1 class="svg_txt_1">Scatter Plot 4</h1>
-      <script src="https://d3js.org/d3.v4.min.js"></script>
-  </div>
-
+                  .attr("height",height);
+
+    var x = d3.scaleLinear()
+        .domain([0,82])
+        .range([padding.left*4,width-padding.right]);
+        //.range([0,width]);
+
+    var y = d3.scaleLinear()
+            .domain([50000000,170000000])
+            .range([height-(padding.bottom*3),padding.top]);
+            //.range([height,0]);
+
+    var axisGroup = canvas.append("g")
+            //.attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+
+    axisGroup.append("g")
+          //.attr("transform", "translate(" + padding.left + "," + (padding.bottom - 5) + ")")
+          .attr("transform", "translate(" + padding.left*4 + ",0)")
+          .attr("class", "axis")
+          .call(d3.axisLeft(y)
+              .ticks(10));
+
+      axisGroup.append("g")
+        .attr("transform", "translate(0," + (height-50) + ")")
+        .attr("class", "axis")
+        .call(d3.axisBottom(x)
+        .ticks(5));
+
+  });
+</script>
+</chart>
 </div>
 
+<br>
+	<hr>
+<br>
 
+<div class="chart-container">
+<chart1>
+	<h1 align="center" class="svg_txt_1">Wins vs Salary, NBA Teams, 2010-2016 Seasons</h1>
+    <h4 align="center"> axes w/ scaled, team-colored data </h4>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
 
+  var data = d3.csv('/teamyears-salaries-colors_public.csv', function(data){
 
-<script>
+    var width = 1500;
+    var height = 750;
+    var padding = { top: 20, right: 20, bottom: 20, left:20 }
+    
+    var canvas = d3.select("chart1")
+                  .append("svg")
+                  .attr("width",width)
+                  .attr("height",height);
 
+    var x = d3.scaleLinear()
+        .domain([0,82])
+        .range([padding.left*4,width-padding.right]);
+        //.range([0,width]);
 
-  var w = 950;
-  var h = 500;
+    var y = d3.scaleLinear()
+            .domain([50000000,170000000])
+            .range([height-(padding.bottom*3),padding.top]);
+            //.range([height,0]);
 
-  teamWinsAndSalary = [
-    {"x":.468, "y":90000000},
-    {"x":.777, "y":100000000},
-    {"x":.720, "y":110000000},
-    {"x":.687, "y":99000000},
-    {"x":.233, "y":70000000}
-  ]
+    var axisGroup = canvas.append("g")
+            //.attr("transform", "translate(" + padding.left + "," + padding.top + ")");
 
-  var svg = d3.select("body").append("svg").attr({width:w,height:h});
+    axisGroup.append("g")
+          //.attr("transform", "translate(" + padding.left + "," + (padding.bottom - 5) + ")")
+          .attr("transform", "translate(" + padding.left*4 + ",0)")
+          .attr("class", "axis")
+          .call(d3.axisLeft(y)
+              .ticks(10));
 
-  svg.selectAll("circle")
-    .data(teamWinsAndSalary)
-    .enter()
-    .append("circle")
-    .attr({
-      cx:function(d){return d.x},
-      cy:function(d){return d.y},
-      r:5,
-      "fill":"blue"
-    })
+	axisGroup.append("g")
+	.attr("transform", "translate(0," + (height-50) + ")")
+	.attr("class", "axis")
+	.call(d3.axisBottom(x)
+		.ticks(5));
+
+	var circlesGroup = canvas.append("g")
+		.attr("transform", "translate(0,-200)");
+
+    circlesGroup.selectAll("circle")
+    	.data(data)
+    	.enter()
+    		.append("circle")
+    		.attr('team-name', function(d){ return d.team })
+    		.attr('season', function(d){ return d.season })
+    		.attr('cx', function(d){ return x(d.wins) })
+    		.attr('cy', function(d){ return y(d.salary) })
+    		.attr('r', 14)
+    		.attr('fill',function(d){ return d.color });
+
+  });
 </script>
+</chart1>
+</div>
+
+<br>
+	<hr>
+<br>
+
+<div class="chart-container">
+<chart2>
+	<h1 align="center" class="svg_txt_1">Wins vs Salary, NBA Teams, 2010-2016 Seasons</h1>
+    <h4 align="center"> axes w/ scaled, team-colored data </h4>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script>
+	
+	var width = 1500;
+	var height = 750;
+	var padding = { top: 20, right: 20, bottom: 20, left:20 }
+
+  	//canvas.call(tip);
+
+	var data = d3.csv('/teamyears-salaries-colors_public.csv', function(data){
+
+	var canvas = d3.select("chart2")
+	              .append("svg")
+	              .attr("width",width)
+	              .attr("height",height);
+
+    var x = d3.scaleLinear()
+        .domain([0,82])
+        .range([padding.left*4,width-padding.right]);
+
+    var y = d3.scaleLinear()
+            .domain([50000000,170000000])
+            .range([height-(padding.bottom*3),padding.top]);
+
+    var axisGroup = canvas.append("g");
+
+    axisGroup.append("g")
+      .attr("transform", "translate(" + padding.left*4 + ",0)")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y)
+          .ticks(10));
+
+	axisGroup.append("g")
+	.attr("transform", "translate(0," + (height-50) + ")")
+	.attr("class", "axis")
+	.call(d3.axisBottom(x)
+		.ticks(5));
+
+	var circlesGroup = canvas.append("g")
+		.attr("transform", "translate(0,-200)");
+
+	var tip = d3.tip()
+	  .attr('class', 'd3-tip')
+  	  .offset([-10, 0])
+	  .html(function(d) {
+	    return "<strong>Wins:</strong> <span style='color:red'>" + d.wins + "</span><br><strong>Salary:</strong> <span style='color:red'>" + d.salary + "</span>"
+	 })
+	  .style("visibility", "hidden");
+
+	//circlesGroup.call(tip);
+
+    circlesGroup.selectAll("circle")
+    	.data(data)
+    	.enter()
+    		.append("circle")
+    		.attr('class','team-circle')
+    		.attr('team-name', function(d){ return d.team })
+    		.attr('season', function(d){ return d.season })
+    		.attr('salary', function(d){ return d.salary })
+    		.attr('wins', function(d){ return d.wins })
+    		.attr('cx', function(d){ return x(d.wins) })
+    		.attr('cy', function(d){ return y(d.salary) })
+    		.attr('r', 14)
+    		.attr('fill',function(d){ return d.color })
+    		.call(tip)
+			.on("mouseover", function(){return tip.style("visibility", "visible")})
+			.on("mouseout", function(){return tip.style("visibility", "hidden")});
+  });
+</script>
+</chart2>
+</div>
+
+<br>
+	<hr>
+<br>
+
+<div class="chart-container">
+<chart3>
+	<h1 align="center" class="svg_txt_1">Wins vs Salary, NBA Teams, 2010-2016 Seasons</h1>
+    <h4 align="center"> axes w/ scaled, team-colored data </h4>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script>
+
+// Get Data
+	var data = d3.csv('/teamyears-salaries-colors_public.csv', function(data){
+
+// Setup Chart Container 
+		var width = 1500;
+		var height = 750;
+		var padding = { top: 20, right: 20, bottom: 20, left:20 }
+
+// Create Axes
+		var canvas = d3.select("chart3")
+			.append("svg")
+			.attr("width",width)
+			.attr("height",height);
+
+	    var x = d3.scaleLinear()
+			.domain([0,82])
+			.range([padding.left*4,width-padding.right]);
+
+	    var y = d3.scaleLinear()
+	        .domain([50000000,170000000])
+	        .range([height-(padding.bottom*3),padding.top]);
+
+	    var axisGroup = canvas.append("g");
+
+	    axisGroup.append("g")
+	      .attr("transform", "translate(" + padding.left*4 + ",0)")
+	      .attr("class", "axis")
+	      .call(d3.axisLeft(y)
+	          .ticks(10));
+
+		axisGroup.append("g")
+		.attr("transform", "translate(0," + (height-50) + ")")
+		.attr("class", "axis")
+		.call(d3.axisBottom(x)
+			.ticks(5));
+
+// Setup Tooltip
+		var div = d3.select("chart3").append("div")   
+		    .attr("y",500)
+		    .attr("class", "ghetto-tooltip")               
+		    .style("opacity", 0);
+
+// Draw Circles
+		var circlesGroup = canvas.append("g")
+			.attr("class","circle-group")
+			.attr("transform", "translate(0,-200)");
+
+	    circlesGroup.selectAll("circle")
+	    	.data(data)
+	    	.enter()
+	    		.append("circle")
+	    		.attr('class','team-circle')
+	    		.attr('team-name', function(d){ return d.team })
+	    		.attr('season', function(d){ return d.season })
+	    		.attr('salary', function(d){ return d.salary })
+	    		.attr('wins', function(d){ return d.wins })
+	    		.attr('cx', function(d){ return x(d.wins) })
+	    		.attr('cy', function(d){ return y(d.salary) })
+	    		.attr('r', 14)
+	    		.attr('fill',function(d){ return d.color })
+				//.on("mouseover", function(){return tip.style("visibility", "visible")})
+				//.on("mouseout", function(){return tip.style("visibility", "hidden")});
+				.on("mouseover", function(d){ 
+					div.style("opacity", .9);
+					div.html("<p>" + "<strong>Wins:</strong> " + d.wins + "<br>" + "<strong>Salary:</strong> " + d.salary + "</p>");
+					div.attr("fill", d.color);
+				})
+				.on("mouseout", function(d){ 
+					div.style("opacity", 0);
+				});
+	});
+</script>
+</chart3>
+</div>

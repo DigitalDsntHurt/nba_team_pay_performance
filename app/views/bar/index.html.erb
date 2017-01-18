@@ -2,7 +2,7 @@
 
 <outer>
   <h1 align="center" class="svg_txt_1">Bar Chart</h1>
-  <h2 align="center">from js array (hand coded)</h2>
+  <h4 align="center">from js array (hand coded)</h4>
   
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
@@ -32,7 +32,7 @@
 
 <outer1>
   <h1 align="center" class="svg_txt_1">Bar Chart</h1>
-  <h2 align="center">from json</h2>
+  <h4 align="center">from json, colors from data</h4>
   
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
@@ -62,7 +62,7 @@
 
 <outer2>
   <h1 align="center" class="svg_txt_1">Bar Chart</h1>
-  <h2 align="center">from csv in app/public</h2>
+  <h4 align="center">from csv in app/public</h4>
   
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
@@ -91,10 +91,379 @@
 <br><br><hr><br><br>
 
 <outer3>
-  <h1 align="center" class="svg_txt_1">Axes</h1>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+    <h4 align="center">from json y-scaled</h4>
   
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
+    var data = d3.json('bar/json.json', function(data){
+
+      var width = "100%";
+      var height = 500;
+      
+      var yScale = d3.scale.linear()
+        .domain([0,81])
+        .range([0,height-5]);
+
+      var canvas = d3.select("outer3").append("svg")
+        .attr("height",height)
+        .attr("width",width)
+        .append("g")
+        .attr("transform","translate(150,60)");
+
+      canvas.selectAll("rect")
+        .data(data)
+        .enter()
+          .append("rect")
+          .attr("width",30)
+          .attr("height",function(d){ return yScale(d.wins) })
+          .attr("x",function(data,i){ return i * 34 })
+          .attr("fill",function(d){ return d.team_color });
+    });
+
+  </script>
 
   </script>
 </outer3>
+
+<br><br>
+<hr>
+<br><br>
+
+
+<outer4>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+    <h4 align="center">from json, inverted </h4>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var data = d3.json('bar/json.json', function(data){
+
+      var width = "100%";
+      var height = 500;
+      
+      var yScale = d3.scale.linear()
+        .domain([0,60])
+        .range([height-5,5]);
+
+      var canvas = d3.select("outer4").append("svg")
+        .attr("height",height)
+        .attr("width",width)
+        .append("g")
+        .attr("transform","translate(150,60)");
+
+      canvas.selectAll("rect")
+        .data(data)
+        .enter()
+          .append("rect")
+          .attr("width",30)
+          .attr("x",function(d,i){ return i * 34 })
+          .attr("y",function(d){ return yScale(d.wins) })
+          .attr("height",function(d){ return yScale(d.wins) })
+          .attr("fill",function(d){ return d.team_color });
+    });
+
+  </script>
+
+  </script>
+</outer4>
+
+
+
+<br><br>
+<hr>
+<br><br>
+
+
+
+<outer5>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+    <h4 align="center">from json, with labels, clumsily x- and y-scaled </h4>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var data = d3.json('bar/json.json', function(data){
+
+      var width = 900;
+      var height = 500;
+      
+      var xScale = d3.scale.linear()
+        .domain([1,30])
+        .range([5,495]);
+      
+      var yScale = d3.scale.linear()
+        .domain([0,60])
+        .range([height-20,20]);
+
+      var canvas = d3.select("outer5").append("svg")
+        .attr("height",height)
+        .attr("width",width)
+        .append("g")
+        .attr("transform","translate(150,60)");
+
+      canvas.selectAll("rect")
+        .data(data)
+        .enter()
+          .append("rect")
+          .attr("width",15)
+          .attr("x",function(d,i){ return xScale(i) })
+          .attr("y",function(d){ return yScale(d.wins) })
+          .attr("height",function(d){ return yScale(d.wins) })
+          .attr("fill",function(d){ return d.team_color });
+
+      canvas.selectAll("text")
+        .data(data)
+        .enter()
+          .append("text")
+
+            .text(function(d){ return d.team_name })
+            .style("text-anchor","end")
+            .attr("dx", function(d,i){ return xScale(i) + 10 })
+            .attr("dy", function(d){ return yScale(d.wins) - 15 })
+            .attr("fill",function(d){ return d.team_color }); 
+    });
+
+  </script>
+</outer5>
+
+
+
+<br><br>
+<hr>
+<br><br>
+
+
+<outer6>
+  <h1 align="center" class="svg_txt_1">Bar Chart</h1>
+    <h4 align="center">from csv, with labels, no scales </h4>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var data = d3.csv('/2016-17_public.csv', function(data){
+
+      var canvas = d3.select("outer6").append("svg")
+        .attr("height","500")
+        .attr("width","100%")
+        .append("g")
+          .attr("transform","translate(200,60)");
+
+      canvas.selectAll("rect")
+        .data(data)
+        .enter()
+          .append("rect")
+          .attr("width",30)
+          .attr("height",function(d){ return d.wins * 10 })
+          .attr("x",function(data,i){ return i*40 })
+          .attr("fill",function(d){ return d.team_color });
+
+      canvas.selectAll("text")
+        .data(data)
+        .enter()
+          .append("text")
+          .text(function(d){ return d.team_name })
+          .attr("y",-22)
+          .attr("x",function(d,i){ return i*40 })
+          .attr("fill",function(d){ return d.team_color });
+      });
+
+  </script>
+</outer6>
+
+
+<br><br>
+<hr>
+<br><br>
+
+
+<chart>
+    <h1 align="center" class="svg_txt_1">Just The Scales!</h1>
+    <h4 align="center">no data </h4>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+var width = 1500;
+var height = 600;
+var padding = {top: 20, right: 40, bottom: 20, left: 40};
+var canvas = d3.select("chart")
+              .append("svg")
+              .attr("width",width)
+              .attr("height",height);
+
+var group = canvas.append("g")
+            .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+
+var x = d3.scaleLinear()
+    .domain([0,82])
+    .range([padding.left, width-padding.right*2]);
+    //.padding(1);
+
+var y = d3.scaleLinear()
+    .domain([50000000,170000000])
+    .range([height-padding.bottom*3,padding.top]);
+
+group.append("g")
+  .attr("transform", "translate(" + padding.left + ",0)")
+  .attr("class", "axis")
+  .call(d3.axisLeft(y)
+      .ticks(10));
+
+group.append("g")
+  .attr("transform", "translate(0,550)")
+  .attr("class", "axis")
+  .call(d3.axisBottom(x)
+      .ticks(5));
+
+</script>
+</chart>
+
+<br><br>
+<hr>
+<br><br>
+
+
+<chart1>
+    <h1 align="center" class="svg_txt_1">Scales with scaled Data</h1>
+    <h4 align="center"> data </h4>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+
+  var data = d3.csv('/2016-17_public.csv', function(data){
+
+    var width = 1500;
+    var height = 600;
+    var padding = {top: 20, right: 40, bottom: 20, left: 40};
+    
+    var canvas = d3.select("chart1")
+                  .append("svg")
+                  .attr("width",width)
+                  .attr("height",height);
+
+    var x = d3.scaleLinear()
+        .domain([0,30])
+        .range([padding.left, 1400]);
+
+    var y = d3.scaleLinear()
+            .domain([0,82])
+            .range([height,0]);
+
+    var axisGroup = canvas.append("g")
+                .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+// Draw Axes
+    axisGroup.append("g")
+      .attr("transform", "translate(" + padding.left + ",0)")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y)
+          .ticks(10));
+
+    axisGroup.append("g")
+      .attr("transform", "translate(1400,0)")
+      .attr("class", "axis")
+      .call(d3.axisRight(y)
+          .ticks(10));
+
+    axisGroup.append("g")
+      .attr("transform", "translate(0,550)")
+      .attr("class", "axis")
+      .call(d3.axisBottom(x)
+        .ticks(30)); 
+
+
+// Draw Bars
+    var barsGroup = canvas.append("g")
+                .attr("transform", "translate(" + padding.left*2 + "," + padding.top + ")");
+
+    barsGroup.selectAll("rect")
+      .data(data)
+      .enter()
+        //.attr("transform", "translate(" + padding.left + ",0)")
+        .append("rect")
+        //.attr("width",(width-((padding.right*2)+(padding.left*2)))/50)
+        //var barWidth = 30
+        .attr("x", function(d,i){ return x(i)-33 })  
+        .attr("width", width/50 )
+        //.attr("y", function(d,i){ return x(i)-33 })  
+        .attr("y", 0)  
+        .attr("height", function(d){ return y(d.wins) })
+        .attr("fill", function(d){ return d.team_color });
+
+
+  });
+</script>
+</chart1>
+
+<br><br>
+<hr>
+<br><br>
+
+<div class="chart-container">
+<chart2>
+    <h1 align="center" class="svg_txt_1">Scaled data adjusted</h1>
+    <h4 align="center"> unlike the above, this is an accurate representation of the data </h4>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+
+  var data = d3.csv('/2016-17_public.csv', function(data){
+
+    var width = 1500;
+    var height = 500;
+    var padding = { top: 20, right: 40, bottom: 20, left:40 }
+    
+    var canvas = d3.select("chart2")
+                  .append("svg")
+                  .attr("width",width)
+                  .attr("height",height);
+
+    var x = d3.scaleLinear()
+        .domain([0,30])
+        .range([padding.left,width-padding.right]);
+        //.range([0,width]);
+
+    var y = d3.scaleLinear()
+            .domain([0,82])
+            .range([height-padding.bottom,padding.top]);
+            //.range([height,0]);
+
+    var axisGroup = canvas.append("g")
+            //.attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+
+    axisGroup.append("g")
+          .attr("transform", "translate(" + padding.left + "," + (padding.bottom - 5) + ")")
+          .attr("class", "axis")
+          .call(d3.axisLeft(y)
+              .ticks(10));
+
+      axisGroup.append("g")
+        .attr("transform", "translate(" + (width - padding.right + 3) + "," + (padding.bottom - 5) + ")")
+        .attr("class", "axis")
+        .call(d3.axisRight(y)
+            .ticks(10));
+
+//      axisGroup.append("g")
+//        .attr("transform", "translate(40,500)")
+//        .attr("class", "axis")
+//        .call(d3.axisBottom(x)
+//          .ticks(0));
+
+
+    var barsGroup = canvas.append("g")
+                .attr("transform", "translate(3," + ( padding.bottom - 5 ) + ")");
+
+// Draw Bars
+    barsGroup.selectAll("rect")
+      .data(data)
+      .enter()
+        //.attr("transform", "translate(0," + padding.bottom + ")")
+        .append("rect")
+        .attr("x", function(d,i){ return x(i) })  
+        .attr("width", width/33 )
+        .attr("y", function(d){ return y(d.wins) })  
+        .attr("height", function(d){ return y(d.wins) })
+        .attr("fill", function(d){ return d.team_color });
+
+  });
+</script>
+</chart2>
+</div>
+
+<br><br>
+<hr>
+<br><br>
